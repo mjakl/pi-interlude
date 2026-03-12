@@ -91,24 +91,6 @@ export default function (pi: ExtensionAPI) {
 		});
 	}
 
-	pi.registerCommand("interlude", {
-		description: "Stash or restore the current draft",
-		handler: async (_args, ctx) => {
-			stashOrRestore(ctx);
-		},
-	});
-
-	pi.registerCommand("interlude-shortcut", {
-		description: "Show the configured interlude shortcut",
-		handler: async (_args, ctx) => {
-			const configured = keybindings.interlude !== undefined;
-			const sourceText = configured
-				? ` Loaded from ${KEYBINDINGS_PATH} key \"${KEY_NAME}\".`
-				: ` Using defaults ${DEFAULT_SHORTCUTS.join(", ")}. Add \"${KEY_NAME}\" to ${KEYBINDINGS_PATH} to override.`;
-			ctx.ui.notify(`Interlude shortcut: ${shortcutLabel()}.${sourceText}`, "info");
-		},
-	});
-
 	pi.on("input", async (event, ctx) => {
 		if (!armed || stashedDraft === null) return { action: "continue" };
 		if (event.source === "extension") return { action: "continue" };
