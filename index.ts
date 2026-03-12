@@ -6,7 +6,6 @@ import type { ExtensionAPI, ExtensionContext } from "@mariozechner/pi-coding-age
 const DEFAULT_SHORTCUTS = ["f6", "ctrl+i"] as const;
 const STATUS_KEY = "interlude";
 const KEYBINDINGS_PATH = path.join(os.homedir(), ".pi", "agent", "keybindings.json");
-const KEY_NAME = "interlude";
 
 type ShortcutConfig = string | string[] | undefined;
 
@@ -61,6 +60,7 @@ export default function (pi: ExtensionAPI) {
 	}
 
 	function stashOrRestore(ctx: ExtensionContext): void {
+		if (!ctx.hasUI) return;
 		const currentText = ctx.ui.getEditorText();
 
 		if (armed && stashedDraft !== null) {
@@ -83,6 +83,8 @@ export default function (pi: ExtensionAPI) {
 	}
 
 	for (const shortcut of shortcuts) {
+		// Shortcut IDs come from runtime user config, so we can't satisfy pi's KeyId
+		// string-literal type without a cast here.
 		pi.registerShortcut(shortcut as any, {
 			description: "Stash the current draft, send one interlude message, then restore the draft",
 			handler: async (ctx) => {

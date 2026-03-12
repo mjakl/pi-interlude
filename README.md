@@ -33,6 +33,8 @@ pi install ./
 
 Press the shortcut again before sending to restore the stashed draft manually.
 
+Note: the extension currently stashes editor text only. If your draft includes attachments, those are not restored.
+
 ## Default shortcuts
 
 - `f6`

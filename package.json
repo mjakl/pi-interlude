@@ -4,6 +4,11 @@
   "description": "Pi extension for stashing the current draft, sending an interlude message, and restoring the draft.",
   "type": "module",
   "main": "index.ts",
+  "scripts": {
+    "test": "node --test",
+    "check": "npm test && npm pack --dry-run >/dev/null",
+    "prepublishOnly": "npm run check"
+  },
   "files": [
     "index.ts",
     "README.md",
