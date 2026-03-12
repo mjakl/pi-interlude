@@ -1,5 +1,7 @@
 # pi-interlude
 
+Ever had a nice prompt prepared and the agent comes back with a question, or you need to check something before continuing? Deleting the draft is wasted effort, copy/pasting to make space for the interlude prompt is cumbersome. `zsh` has this fantastic stash command - `Esc-q` - that allows you to temporarily remove the current command and it will restore it after your interlude command is finished. `pi-interlude` brings this to pi. Install it, reload, enter something, press `Ctrl-i`, enter something else, send it, and watch with awe as your previous prompt reappears 🎉.
+
 A pi extension that lets you stash the current draft, send a one-off interlude message, and then restore the original draft.
 
 ## Install
