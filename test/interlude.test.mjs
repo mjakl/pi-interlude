@@ -70,14 +70,14 @@ function createHarness(extension) {
 test("normalizes custom shortcuts from keybindings.json", { concurrency: false }, async () => {
 	const extension = await loadExtension({
 		keybindings: {
-			interlude: [" F6 ", "ctrl+i", "f6", ""],
+			interlude: [" F6 ", "ctrl+s", "f6", ""],
 		},
 	});
 	const harness = createHarness(extension);
 
 	assert.deepEqual(
 		harness.shortcuts.map((shortcut) => shortcut.key),
-		["f6", "ctrl+i"],
+		["f6", "ctrl+s"],
 	);
 });
 

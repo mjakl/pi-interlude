@@ -3,7 +3,7 @@ import os from "node:os";
 import path from "node:path";
 import type { ExtensionAPI, ExtensionContext } from "@mariozechner/pi-coding-agent";
 
-const DEFAULT_SHORTCUTS = ["f6", "ctrl+i"] as const;
+const DEFAULT_SHORTCUTS = ["f6", "ctrl+s"] as const;
 const STATUS_KEY = "interlude";
 const KEYBINDINGS_PATH = path.join(os.homedir(), ".pi", "agent", "keybindings.json");
 

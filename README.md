@@ -1,6 +1,6 @@
 # pi-interlude
 
-Ever had a nice prompt prepared and the agent comes back with a question, or you need to check something before continuing? Deleting the draft is wasted effort, copy/pasting to make space for the interlude prompt is cumbersome. `zsh` has this fantastic stash command - `Esc-q` - that allows you to temporarily remove the current command and it will restore it after your interlude command is finished. `pi-interlude` brings this to pi. Install it, reload, enter something, press `Ctrl-i`, enter something else, send it, and watch with awe as your previous prompt reappears 🎉.
+Ever had a nice prompt prepared and the agent comes back with a question, or you need to check something before continuing? Deleting the draft is wasted effort, copy/pasting to make space for the interlude prompt is cumbersome. `zsh` has this fantastic stash command - `Esc-q` - that allows you to temporarily remove the current command and it will restore it after your interlude command is finished. `pi-interlude` brings this to pi. Install it, reload, enter something, press `Ctrl-s`, enter something else, send it, and watch with awe as your previous prompt reappears 🎉.
 
 A pi extension that lets you stash the current draft, send a one-off interlude message, and then restore the original draft.
 
@@ -38,10 +38,10 @@ Note: the extension currently stashes editor text only. If your draft includes a
 ## Default shortcuts
 
 - `f6`
-- `ctrl+i` (`i` for "interlude")
+- `ctrl+s` (`s` for "stash")
 
 `f6` is the robust default.
-`ctrl+i` is a mnemonic secondary shortcut, but in many terminals it is indistinguishable from `tab`, so it may conflict with autocomplete.
+`ctrl+s` is a mnemonic secondary shortcut for stash, but some terminals intercept it for software flow control, so you may need to rebind it if it does not reach pi.
 
 ## Configuration
 
@@ -53,7 +53,7 @@ Example:
 
 ```json
 {
-  "interlude": ["f6", "ctrl+i"]
+  "interlude": ["f6", "ctrl+s"]
 }
 ```
 
@@ -65,7 +65,7 @@ Single shortcut example:
 }
 ```
 
-If `interlude` is not set, the extension defaults to `f6` and `ctrl+i`.
+If `interlude` is not set, the extension defaults to `f6` and `ctrl+s`.
 
 After changing `keybindings.json`, run `/reload` in pi.
 
