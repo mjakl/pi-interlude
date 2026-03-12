@@ -20,6 +20,14 @@
     "interlude",
     "pi-package"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjakl/pi-interlude.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mjakl/pi-interlude/issues"
+  },
+  "homepage": "https://github.com/mjakl/pi-interlude#readme",
   "publishConfig": {
     "access": "public"
   },

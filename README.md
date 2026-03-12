@@ -76,4 +76,8 @@ After changing `keybindings.json`, run `/reload` in pi.
 ## Publishing notes
 
 This repository is structured as a pi package via the `pi` manifest in `package.json`.
-Before publishing, verify package metadata such as package name and repository fields.
+
+Repository metadata:
+
+- GitHub: `https://github.com/mjakl/pi-interlude`
+- npm package: `@mjakl/pi-interlude`
