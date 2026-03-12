@@ -2,17 +2,21 @@
 
 A pi extension that lets you stash the current draft, send a one-off interlude message, and then restore the original draft.
 
-Version: `0.9.0`
-
 ## Install
 
-### npm
+### Option 1: Install from npm (recommended)
 
 ```bash
 pi install npm:@mjakl/pi-interlude
 ```
 
-### local package
+### Option 2: Install via git
+
+```bash
+pi install git:github.com/mjakl/pi-interlude
+```
+
+### Option 3: Install local package
 
 ```bash
 pi install ./
@@ -61,23 +65,3 @@ If `interlude` is not set, the extension defaults to `f6` and `ctrl+i`.
 
 After changing `keybindings.json`, run `/reload` in pi.
 
-## Commands
-
-- `/interlude` - stash or restore the current draft
-- `/interlude-shortcut` - show the active shortcuts
-
-## Package structure
-
-- `index.ts` - extension entry point
-- `package.json` - npm and pi package manifest
-- `LICENSE`
-- `README.md`
-
-## Publishing notes
-
-This repository is structured as a pi package via the `pi` manifest in `package.json`.
-
-Repository metadata:
-
-- GitHub: `https://github.com/mjakl/pi-interlude`
-- npm package: `@mjakl/pi-interlude`
