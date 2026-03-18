@@ -1,6 +1,6 @@
 {
   "name": "@mjakl/pi-interlude",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Pi extension for stashing the current draft, sending an interlude message, and restoring the draft.",
   "type": "module",
   "main": "index.ts",
