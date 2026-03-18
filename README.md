@@ -28,10 +28,19 @@ pi install ./
 
 1. Press the interlude shortcut
 2. Your current editor text is stashed and the input box is cleared
-3. Type and send a temporary message, or run a slash command like `/compact`
+3. Type and send a temporary message, or use one of the supported slash commands below
 4. Your previous draft is restored into the editor
 
 Press the shortcut again before sending to restore the stashed draft manually.
+
+## Slash command support
+
+Auto-restore currently works for:
+
+- `/compact`
+- `/model`
+
+For other slash commands, the stash stays armed. You can restore it manually by pressing the interlude shortcut again.
 
 Note: the extension currently stashes editor text only. If your draft includes attachments, those are not restored.
 

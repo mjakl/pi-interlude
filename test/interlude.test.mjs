@@ -138,12 +138,12 @@ test("before_agent_start restores the draft if the interlude input was blank", {
 	assert.equal(harness.getStatus(), undefined);
 });
 
-test("session_compact restores the stashed draft after slash commands like /compact", { concurrency: false }, async () => {
+test("session_before_compact restores the stashed draft immediately for /compact", { concurrency: false }, async () => {
 	const extension = await loadExtension();
 	const harness = createHarness(extension);
-	const sessionCompactHandler = harness.handlers.get("session_compact");
+	const sessionBeforeCompactHandler = harness.handlers.get("session_before_compact");
 
-	assert.ok(sessionCompactHandler, "session_compact handler should be registered");
+	assert.ok(sessionBeforeCompactHandler, "session_before_compact handler should be registered");
 
 	harness.setEditorText("draft to restore after compact");
 	await harness.shortcuts[0].definition.handler(harness.ctx);
@@ -151,7 +151,25 @@ test("session_compact restores the stashed draft after slash commands like /comp
 	assert.equal(harness.getEditorText(), "");
 	assert.match(harness.getStatus(), /interlude armed/);
 
-	await sessionCompactHandler({}, harness.ctx);
+	await sessionBeforeCompactHandler({}, harness.ctx);
 	assert.equal(harness.getEditorText(), "draft to restore after compact");
+	assert.equal(harness.getStatus(), undefined);
+});
+
+test("model_select restores the stashed draft after /model selects a model", { concurrency: false }, async () => {
+	const extension = await loadExtension();
+	const harness = createHarness(extension);
+	const modelSelectHandler = harness.handlers.get("model_select");
+
+	assert.ok(modelSelectHandler, "model_select handler should be registered");
+
+	harness.setEditorText("draft to restore after model select");
+	await harness.shortcuts[0].definition.handler(harness.ctx);
+
+	assert.equal(harness.getEditorText(), "");
+	assert.match(harness.getStatus(), /interlude armed/);
+
+	await modelSelectHandler({}, harness.ctx);
+	assert.equal(harness.getEditorText(), "draft to restore after model select");
 	assert.equal(harness.getStatus(), undefined);
 });

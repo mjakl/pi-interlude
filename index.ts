@@ -112,7 +112,15 @@ export default function (pi: ExtensionAPI) {
 		restoreDraft(ctx);
 	});
 
+	pi.on("session_before_compact", async (_event, ctx) => {
+		restoreDraft(ctx);
+	});
+
 	pi.on("session_compact", async (_event, ctx) => {
+		restoreDraft(ctx);
+	});
+
+	pi.on("model_select", async (_event, ctx) => {
 		restoreDraft(ctx);
 	});
 
