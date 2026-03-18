@@ -28,7 +28,7 @@ pi install ./
 
 1. Press the interlude shortcut
 2. Your current editor text is stashed and the input box is cleared
-3. Type and send a temporary message
+3. Type and send a temporary message, or run a slash command like `/compact`
 4. Your previous draft is restored into the editor
 
 Press the shortcut again before sending to restore the stashed draft manually.

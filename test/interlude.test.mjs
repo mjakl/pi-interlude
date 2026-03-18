@@ -137,3 +137,21 @@ test("before_agent_start restores the draft if the interlude input was blank", {
 	assert.equal(harness.getEditorText(), "draft after blank interlude");
 	assert.equal(harness.getStatus(), undefined);
 });
+
+test("session_compact restores the stashed draft after slash commands like /compact", { concurrency: false }, async () => {
+	const extension = await loadExtension();
+	const harness = createHarness(extension);
+	const sessionCompactHandler = harness.handlers.get("session_compact");
+
+	assert.ok(sessionCompactHandler, "session_compact handler should be registered");
+
+	harness.setEditorText("draft to restore after compact");
+	await harness.shortcuts[0].definition.handler(harness.ctx);
+
+	assert.equal(harness.getEditorText(), "");
+	assert.match(harness.getStatus(), /interlude armed/);
+
+	await sessionCompactHandler({}, harness.ctx);
+	assert.equal(harness.getEditorText(), "draft to restore after compact");
+	assert.equal(harness.getStatus(), undefined);
+});

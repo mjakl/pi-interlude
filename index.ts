@@ -59,13 +59,19 @@ export default function (pi: ExtensionAPI) {
 		updateStatus(ctx);
 	}
 
+	function restoreDraft(ctx: ExtensionContext): void {
+		if (!ctx.hasUI || !armed || stashedDraft === null) return;
+		const draftToRestore = stashedDraft;
+		clearStash(ctx);
+		ctx.ui.setEditorText(draftToRestore);
+	}
+
 	function stashOrRestore(ctx: ExtensionContext): void {
 		if (!ctx.hasUI) return;
 		const currentText = ctx.ui.getEditorText();
 
 		if (armed && stashedDraft !== null) {
-			ctx.ui.setEditorText(stashedDraft);
-			clearStash(ctx);
+			restoreDraft(ctx);
 			ctx.ui.notify("Interlude draft restored", "info");
 			return;
 		}
@@ -98,17 +104,16 @@ export default function (pi: ExtensionAPI) {
 		if (event.source === "extension") return { action: "continue" };
 		if (!event.text.trim()) return { action: "continue" };
 
-		const draftToRestore = stashedDraft;
-		clearStash(ctx);
-		ctx.ui.setEditorText(draftToRestore);
+		restoreDraft(ctx);
 		return { action: "continue" };
 	});
 
 	pi.on("before_agent_start", async (_event, ctx) => {
-		if (!armed || stashedDraft === null) return;
-		const draftToRestore = stashedDraft;
-		clearStash(ctx);
-		ctx.ui.setEditorText(draftToRestore);
+		restoreDraft(ctx);
+	});
+
+	pi.on("session_compact", async (_event, ctx) => {
+		restoreDraft(ctx);
 	});
 
 	pi.on("session_start", async (_event, ctx) => {
